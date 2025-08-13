@@ -3,6 +3,10 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -15,5 +19,25 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+
+        $exceptions->renderable(function (\Throwable $e, $request) {
+
+            if ($request->is('api/*') || $request->wantsJson()) {
+
+                if ($e instanceof ModelNotFoundException || $e instanceof NotFoundHttpException) {
+                    return response()->json([
+                        'message' => 'User not found for given ID '. $request->route("user"),
+                     ], 404);
+                }
+                
+                if ($e instanceof ValidationException) {    
+                    return response()->json([
+                        'message' => 'Validation error',
+                        'errors'  => $e->errors(),
+                    ], 422);
+                }
+
+            }
+        });
+
     })->create();
