@@ -28,6 +28,29 @@ class userController extends Controller
     public function store(Request $request)
     {
 
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'phone' => 'required|string|min:10|max:15',
+            'status_active' => 'boolean',
+            'departement' => 'nullable|string|max:255',
+        ]);
+
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+            'phone' => $validatedData['phone'],
+            'status_active' => $validatedData['status_active']??true,
+            'departement' => $validatedData['departement'],
+        ]);
+
+        return response()->json([
+            'data' => $user,
+            'message' => 'User created successfully',
+            'status' => 201
+        ]);
     }
 
     /**
@@ -43,7 +66,7 @@ class userController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+
     }
 
     /**
