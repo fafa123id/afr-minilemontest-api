@@ -18,8 +18,8 @@ class userController extends Controller
             [
                 'data' => $users,
                 'message' => 'Users retrieved successfully',
-                'status' => 200
-            ]
+            ],
+            200
         );
     }
 
@@ -50,8 +50,8 @@ class userController extends Controller
         return response()->json([
             'data' => $user,
             'message' => 'User created successfully',
-            'status' => 201
-        ]);
+
+        ], 201);
     }
 
     /**
@@ -64,8 +64,8 @@ class userController extends Controller
             [
                 'data' => $user,
                 'message' => 'User retrieved successfully',
-                'status' => 200
-            ]
+            ],
+            200
         );
     }
 
@@ -78,7 +78,7 @@ class userController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'sometimes|string|max:255',
-            'email' => 'sometimes|string|email|max:255|unique:users,email,'.$user->id,
+            'email' => 'sometimes|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'sometimes|string|min:8',
             'phone' => 'sometimes|string|min:10|max:15',
             'status_active' => 'sometimes|boolean',
@@ -90,8 +90,7 @@ class userController extends Controller
         return response()->json([
             'data' => $user,
             'message' => 'User updated successfully',
-            'status' => 200
-        ]);
+        ], 200);
     }
 
     /**
@@ -104,7 +103,6 @@ class userController extends Controller
 
         return response()->json([
             'message' => 'User deleted successfully',
-            'status' => 200
-        ]);
+        ], 200);
     }
 }
