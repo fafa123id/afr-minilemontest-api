@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -40,7 +41,7 @@ class userController extends Controller
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),
+            'password' => Hash::make($validatedData['password']),
             'phone' => $validatedData['phone'],
             'status_active' => $validatedData['status_active']??true,
             'departement' => $validatedData['departement'],
