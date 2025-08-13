@@ -23,10 +23,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->renderable(function (\Throwable $e, $request) {
 
             if ($request->is('api/*') || $request->wantsJson()) {
-
                 if ($e instanceof ModelNotFoundException || $e instanceof NotFoundHttpException) {
                     return response()->json([
-                        'message' => 'User not found for given ID '. $request->route("user"),
+                        'message' => 'User not found for given ID '. $request->route('id'),
                      ], 404);
                 }
                 
