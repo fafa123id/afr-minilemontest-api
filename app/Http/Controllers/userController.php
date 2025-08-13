@@ -43,7 +43,7 @@ class userController extends Controller
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
             'phone' => $validatedData['phone'],
-            'status_active' => $validatedData['status_active']??true,
+            'status_active' => $validatedData['status_active'] ?? true,
             'departement' => $validatedData['departement'],
         ]);
 
@@ -74,7 +74,24 @@ class userController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $user = User::findOrFail($id);
 
+        $validatedData = $request->validate([
+            'name' => 'sometimes|string|max:255',
+            'email' => 'sometimes|string|email|max:255|unique:users,email,'.$user->id,
+            'password' => 'sometimes|string|min:8',
+            'phone' => 'sometimes|string|min:10|max:15',
+            'status_active' => 'sometimes|boolean',
+            'departement' => 'sometimes|string|max:255',
+        ]);
+
+        $user->update(array_filter($validatedData));
+
+        return response()->json([
+            'data' => $user,
+            'message' => 'User updated successfully',
+            'status' => 200
+        ]);
     }
 
     /**
