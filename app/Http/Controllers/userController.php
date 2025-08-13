@@ -16,8 +16,8 @@ class userController extends Controller
         $users = User::all();
         return response()->json(
             [
-                'data' => $users,
                 'message' => 'Users retrieved successfully',
+                'data' => $users,
             ],
             200
         );
@@ -48,8 +48,8 @@ class userController extends Controller
         ]);
 
         return response()->json([
-            'data' => $user,
             'message' => 'User created successfully',
+            'data' => $user,
 
         ], 201);
     }
@@ -62,8 +62,8 @@ class userController extends Controller
         $user = User::findOrFail($id);
         return response()->json(
             [
-                'data' => $user,
                 'message' => 'User retrieved successfully',
+                'data' => $user,
             ],
             200
         );
@@ -88,8 +88,8 @@ class userController extends Controller
         $user->update(array_filter($validatedData));
 
         return response()->json([
-            'data' => $user,
             'message' => 'User updated successfully',
+            'data' => $user,
         ], 200);
     }
 
