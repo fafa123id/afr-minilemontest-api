@@ -58,7 +58,14 @@ class userController extends Controller
      */
     public function show(string $id)
     {
-
+        $user = User::findOrFail($id);
+        return response()->json(
+            [
+                'data' => $user,
+                'message' => 'User retrieved successfully',
+                'status' => 200
+            ]
+        );
     }
 
     /**
