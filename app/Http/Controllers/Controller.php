@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
  * @OA\Info(
  * version="1.0.0",
  * title="Minilemon Tech Test API Documentation",
- * description="API documentation for the tech test project, featuring product management.",
+ * description="API documentation for the tech test project, featuring user management.",
  * @OA\Contact(
  * email="ahmadfauzanroziqin@gmail.com"
  * )
