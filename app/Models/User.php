@@ -17,20 +17,20 @@ use Illuminate\Notifications\Notifiable;
  * property="id",
  * type="integer",
  * readOnly=true,
- * description="ID unik untuk pengguna",
+ * description="Unique ID for the user",
  * example=1
  * ),
  * @OA\Property(
  * property="name",
  * type="string",
- * description="Nama lengkap pengguna",
+ * description="Name of the user",
  * example="John Doe"
  * ),
  * @OA\Property(
  * property="email",
  * type="string",
  * format="email",
- * description="Alamat email pengguna (harus unik)",
+ * description="Email address of the user(must be unique)",
  * example="john.doe@example.com"
  * ),
  * @OA\Property(
@@ -38,26 +38,26 @@ use Illuminate\Notifications\Notifiable;
  * type="string",
  * format="date-time",
  * readOnly=true,
- * description="Tanggal dan waktu verifikasi email",
+ * description="Timestamp when the user's email was verified",
  * example="2025-08-14T09:00:00.000000Z"
  * ),
  * @OA\Property(
  * property="phone",
  * type="string",
- * description="Nomor telepon pengguna",
+ * description="User's phone number",
  * nullable=true,
  * example="081234567890"
  * ),
  * @OA\Property(
  * property="status_active",
  * type="boolean",
- * description="Status keaktifan pengguna (1=aktif, 0=tidak aktif)",
+ * description="Indicates if the user is active",
  * example=true
  * ),
  * @OA\Property(
  * property="departement",
  * type="string",
- * description="Departemen tempat pengguna bekerja",
+ * description="Department of the user",
  * nullable=true,
  * example="Information Technology"
  * ),
@@ -66,7 +66,7 @@ use Illuminate\Notifications\Notifiable;
  * type="string",
  * format="date-time",
  * readOnly=true,
- * description="Tanggal dan waktu pembuatan record",
+ * description="Date and time when the record was created",
  * example="2025-08-14T09:00:00.000000Z"
  * ),
  * @OA\Property(
@@ -74,7 +74,7 @@ use Illuminate\Notifications\Notifiable;
  * type="string",
  * format="date-time",
  * readOnly=true,
- * description="Tanggal dan waktu pembaruan record terakhir",
+ * description="Date and time when the record was last updated",
  * example="2025-08-14T09:00:00.000000Z"
  * )
  * )
