@@ -26,6 +26,7 @@ COPY . .
 RUN chown -R www-data:www-data /var/www/afr-minilemontest-api \
     && chmod -R 775 /var/www/afr-minilemontest-api/storage /var/www/afr-minilemontest-api/bootstrap/cache
 
+RUN cp .env.example .env
 
 EXPOSE 9000
 CMD ["php-fpm"]
