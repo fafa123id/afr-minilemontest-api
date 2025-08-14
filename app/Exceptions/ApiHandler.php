@@ -14,7 +14,7 @@ class ApiHandler
      */
     public function __invoke(Throwable $e, Request $request)
     {
-        if ($request->is('api/*') || $request->wantsJson()) {
+        if ($request->wantsJson()) {
             if ($e instanceof NotFoundHttpException) {
                 return response()->json([
                     'message' => 'Resource not found',
