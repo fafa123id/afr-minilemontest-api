@@ -30,7 +30,7 @@ Pastikan Anda sudah menginstal perangkat lunak berikut:
 
 1.  **Clone repositori ini:**
     ```bash
-    https://github.com/fafa123id/afr-minilemontest-api.git
+    git clone https://github.com/fafa123id/afr-minilemontest-api.git
     cd afr-minilemontest-api
     ```
 2.  **Masuk ke direktori repositori yang telah diclone**
@@ -44,7 +44,7 @@ Pastikan Anda sudah menginstal perangkat lunak berikut:
 4.  **Nyalakan MySQL Service**
     untuk Windows:
     ```bash
-    net start mysql
+    net start mysql #cmd/terminal admin
     ```
     *bisa juga melalui xampp atau Laragon untuk Windows*
     untuk Linux:
