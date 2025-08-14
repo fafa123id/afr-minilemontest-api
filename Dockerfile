@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     zip \
     unzip \
+    netcat-openbsd \
     git \
     curl \
     libonig-dev \
@@ -18,15 +19,15 @@ WORKDIR /var/www/afr-minilemontest-api
 
 COPY composer.json composer.lock ./
 
-RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interaction
+RUN composer install --no-interaction --no-dev --no-scripts --prefer-dist
+
+COPY entrypoint.sh /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["entrypoint.sh"]
 
 COPY . .
-
-
-RUN chown -R www-data:www-data /var/www/afr-minilemontest-api \
-    && chmod -R 775 /var/www/afr-minilemontest-api/storage /var/www/afr-minilemontest-api/bootstrap/cache
-
-RUN cp .env.example .env
 
 EXPOSE 9000
 CMD ["php-fpm"]
