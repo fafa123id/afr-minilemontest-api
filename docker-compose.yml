@@ -1,0 +1,48 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: minilemon_app
+    restart: unless-stopped
+    working_dir: /var/www/afr-minilemontest-api
+    # Hanya mount folder yang perlu
+    volumes:
+      - ./storage:/var/www/afr-minilemontest-api/storage
+      - ./bootstrap/cache:/var/www/afr-minilemontest-api/bootstrap/cache
+    networks:
+      - laravel
+
+  webserver:  
+    image: nginx:alpine
+    container_name: minilemon_web
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/afr-minilemontest-api:cached
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - laravel
+
+  db:
+    image: mysql:8.0
+    container_name: minilemon_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - laravel
+
+networks:
+  laravel:
+
+volumes:
+  db_data:
