@@ -15,9 +15,9 @@ class ApiHandler
     public function __invoke(Throwable $e, Request $request)
     {
         if ($request->is('api/*') || $request->wantsJson()) {
-            if ($e instanceof ModelNotFoundException || $e instanceof NotFoundHttpException) {
+            if ($e instanceof NotFoundHttpException) {
                 return response()->json([
-                    'message' => 'User not found for given ID ' . $request->route('id'),
+                    'message' => 'Resource not found',
                 ], 404);
             }
 
