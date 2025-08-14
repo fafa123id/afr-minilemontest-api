@@ -23,6 +23,7 @@ echo "Generating Swagger documentation..."
 php artisan l5-swagger:generate
 
 chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
 
 echo "Laravel setup is complete. Starting PHP-FPM..."
 
