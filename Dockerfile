@@ -19,7 +19,7 @@ WORKDIR /var/www/afr-minilemontest-api
 
 COPY composer.json composer.lock ./
 
-RUN composer install --no-interaction --no-dev --no-scripts --prefer-dist
+RUN composer install --no-interaction --no-dev --no-scripts --prefer-dist --no-cache
 
 COPY entrypoint.sh /usr/local/bin/
 
