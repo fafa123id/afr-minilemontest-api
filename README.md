@@ -38,7 +38,8 @@ Pastikan Anda sudah menginstal perangkat lunak berikut:
     cd afr-minilemontest-api
     ```
 3. **Ubah nama .env.example menjadi .env**
-**(Opsional) anda dapat mengubah field .env yang diperlukan seperti (DB_USERNAME, DB_PASSWORD) sesuai kebutuhan!**
+   
+    **(Opsional) anda dapat mengubah field .env yang diperlukan seperti (DB_USERNAME, DB_PASSWORD) sesuai kebutuhan!**
 
 ### Bila Menggunakan Local Laravel + PHP Mysql  (Development Cycle)
 4.  **Nyalakan MySQL Service**
