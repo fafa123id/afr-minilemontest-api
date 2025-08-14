@@ -13,21 +13,18 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.8.10 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/afr-minilemontest-api
 
-COPY composer.json composer.lock ./
+COPY . .
 
-RUN composer install --no-interaction --no-dev --no-scripts --prefer-dist --no-cache
+RUN composer install --no-dev --prefer-dist --optimize-autoloader
 
 COPY entrypoint.sh /usr/local/bin/
-
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["entrypoint.sh"]
-
-COPY . .
 
 EXPOSE 9000
 CMD ["php-fpm"]
