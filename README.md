@@ -43,11 +43,13 @@ Pastikan Anda sudah menginstal perangkat lunak berikut:
 
 ### Bila Menggunakan Local Laravel + PHP Mysql  (Development Cycle)
 4.  **Nyalakan MySQL Service**
+   
     untuk Windows:
     ```bash
     net start mysql #cmd/terminal admin
     ```
     *bisa juga melalui xampp atau Laragon untuk Windows*
+    
     untuk Linux:
     ```bash
     sudo systemctl start mysql
